@@ -23,9 +23,11 @@ const initStore = () => {
 };
 
 const loadStore = () => {
-  if(!localStorage.getItem("state")) return;
+  if (!localStorage.getItem("state")) return;
 
-  const {todos = [], filter = Filters.All} = JSON.parse(localStorage.getItem("state"));
+  const { todos = [], filter = Filters.All } = JSON.parse(
+    localStorage.getItem("state")
+  );
   state.todos = todos;
   state.filter = filter;
 };
@@ -85,7 +87,7 @@ const deleteTodo = (todoId) => {
 };
 
 const deleteCompleted = () => {
-  state.todos = state.todos.filter((todo) => todo.done);
+  state.todos = state.todos.filter((todo) => !todo.done);
   saveStateToLocalStorage();
 };
 
