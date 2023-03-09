@@ -5,13 +5,17 @@ import { createTodoHTML } from "./";
  * @param {Todo} todos 
  */
 
-
+let element;
 
 export const renderTodos = (elementId, todos = []) => {
 
-    const elemet = document.querySelector(elementId);
+    if(!element) element = document.querySelector(elementId);
+
+    if(!element) throw new Error(`Element ${elementId} not found`);
+
+    element.innerHTML = "";
 
     todos.forEach(todo => {
-        elemet.append(createTodoHTML(todo))
+        element.append(createTodoHTML(todo))
     });
 }
